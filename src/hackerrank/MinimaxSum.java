@@ -1,5 +1,7 @@
 package hackerrank;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -10,22 +12,23 @@ public class MinimaxSum {
     }
 
     private static void minimaxSum(List<Integer> arr){
+        long maximum = arr.get(0);
+        long minimum = arr.get(0);
+        long sumres = 0;
 
-        int minimum =0;
-        int maximum = 0;
-        int sumres;
-
-        for(int i = 0 ; i < arr.size() ; i++){
-            sumres = 0;
-            for (int j = arr.size()-1;j>arr.size()-5;j--){
-                sumres+= arr.get(j);
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) > maximum){
+                maximum = arr.get(i);
             }
-            if(sumres > maximum){
-                maximum = sumres;
-            }else{
-                minimum = sumres;
+            if (arr.get(i) < minimum){
+                minimum = arr.get(i);
             }
         }
-        System.out.println(minimum + " " +maximum);
+
+        for(int i : arr){
+            sumres+= i;
+        }
+
+        System.out.println((sumres-maximum) + " " + (sumres-minimum));
     }
 }
